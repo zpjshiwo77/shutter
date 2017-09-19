@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>百叶窗特效</title>
+    <meta name="keywords" content="百叶窗特效" />
+    <meta name="description" content="百叶窗特效" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        #shutter-banner{
+            margin: 200px auto 0;
+            width: 800px;
+            height: 430px;
+            overflow: hidden;
+            position: relative;
+        }
+        #shutter-banner .shutter-next,#shutter-banner .shutter-prev{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #shutter-banner .shutter-prev{
+            right: 80px;
+        }
+        #shutter-banner .pagination{
+            position: absolute;
+            left: 0px;
+            bottom: 25px;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #shutter-banner .pagination span{
+            float: left;
+            display: block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background: #aaa;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #shutter-banner .pagination span.active{
+            background: #333;
+        }
+
+        #shutter-banner .info-word{
+            position: absolute;
+            top: 245px;
+            left: 50px;
+            width: 200px;
+            height: auto;
+        }
+        #shutter-banner .info-word h1{
+            font-size: 22px;
+            text-align: center;
+            line-height: 1.3;
+            font-weight: bold;
+            padding: 20px 0;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+        }
+
+        #shutter-banner .shutter-imgs-box{
+            width: 800px;
+            height: 360px;
+            overflow: hidden;
+            position: relative;
+        }
+        #shutter-banner li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        #shutter-banner li > img{
+            width: 800px;
+            height: 360px;
+        }
+
+        #shutter-banner .shutter-effect-box{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 800px;
+            height: 360px;
+            overflow: hidden;
+            display: none;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="shutter-banner" >
+        <ul class="shutter-imgs-box">
+            <li data-type="random" data-img="images/1.jpg">
+                <img src="images/1.jpg">
+            </li>
+            <li data-type="random" data-img="images/2.jpg">
+                <img src="images/2.jpg">
+            </li>
+            <li data-type="random" data-img="images/3.jpg">
+                <img src="images/3.jpg">
+            </li>
+            <li data-type="random" data-img="images/4.jpg">
+                <img src="images/4.jpg">
+            </li>
+        </ul>
+
+        <div class="shutter-effect-box"></div>
+
+        <div class="info-word"></div>
+
+        <div class="shutter-next">next</div>
+        <div class="shutter-prev">prev</div>
+        <div class="pagination"></div>
+    </div>
+
+    <!-- js部分 start -->
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/shutter.js"></script>
+    <!-- js部分 end -->
+
+    <script>
+    /*
+     *  实例化一个对象 var shutterDemo = new shutterSwitch();
+        shutterDemo.init(ele,option):初始化
+         * 参数：
+         * ele:jquery元素
+         * option.auto:是否自动播放，默认值true
+         * option.delay:切换延时，默认值5000ms
+         * option.pagination:是否显示分页器，默认值true
+         * option.paginationEvent:分页器是否添加点击事件，默认值false
+         * option.onStart:开始变换的回调函数,传递当前显示对象的id
+         * option.onComplete:结束变换的回调函数,传递当前显示对象的id
+     * 
+     *  shutterDemo.NextItem()：下一页
+     * 
+     *  shutterDemo.PrevItem()：上一页
+     * 
+     *  li元素必填两个属性：
+         data-type   切换的效果：
+            random              随机效果(下面八个效果随机一个),
+            fade                淡入淡出(若li项目除了图片以外有其他元素建议只使用这个效果),
+            row-bar-move        横向消失
+            row-bar-cross       横向交错消失
+            col-bar-move        竖向消失
+            col-bar-cross       竖向交错消失
+            square-disappear    方块对角线消失
+            square-random       方块随机消失
+            square-shrink       方块收缩消失
+         data-img    切换的图片
+     */
+
+    var intro = [{title:"奇异博士"},{title:"敢死队"},{title:"强者世界"},{title:"泰坦尼克号"}];
+    $(".info-word").html('<h1>'+intro[0].title+'</h1>');
+
+    var shutterBanner = new shutterSwitch();
+    var opts = {
+        paginationEvent:true,
+        delay:8000,
+        onComplete:function(id){
+            $(".info-word").html('<h1>'+intro[id].title+'</h1>');
+        }
+    }
+    shutterBanner.init($("#shutter-banner"),opts);
+    </script>
+</body>
+</html>

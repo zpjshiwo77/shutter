@@ -1,0 +1,14 @@
+*{font-family: "Airal","Microsoft YaHei"; padding: 0px;margin: 0px;text-decoration: none;outline-style:none;border:0px;line-height: 1;}
+html,body{ width:100%;min-width: 1200px; height:auto;background: #fff;}
+table{border-collapse:collapse;border-spacing:0;}
+th,tr,td,h1,h2,h3,h4,h5,h6,i,b,em{font-style:normal;font-weight:normal;}
+ol,ul,li {list-style-type:none; display:block;}
+/*select,input,img{vertical-align:middle;border:none;outline:none;}*/
+textarea {resize: none;} /*webkit核心中textare取消拖动调整大小*/
+textarea:focus {outline: none;} /*textarea聚焦时默认边框颜色不变*/
+/*select,input[type=text],input[type=tel],input[type=password],input[type=number],textarea{ -webkit-appearance:none; border:none; border-radius:0; background-color:transparent;}*/
+input::-webkit-input-placeholder,input:focus::-webkit-input-placeholder{color:#b7b7b7;}/* input 标签placeholder文字的颜色*/
+a{ text-decoration:none; display:block;}
+a:hover,a:active,a:focus{text-decoration:none;}
+/*.e-font{font-family:wsien;}*/
+/*common end*/
